@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogicFlow: 실시간 Rerouting 시뮬레이터</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo">LogicFlow <span class="badge">Beta</span></div>
+            <div class="student-status">
+                <div class="stat-item">
+                    <span class="stat-label">Current Level</span>
+                    <span class="stat-value highlight">D4</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Vocab</span>
+                    <span class="stat-value" id="theta-vocab">θ: 1.2</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Syntax</span>
+                    <span class="stat-value" id="theta-syntax">θ: 0.8</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Reading Passage Area -->
+            <section class="passage-container">
+                <h2 class="passage-title">Reading Passage (2024 CSAT #31)</h2>
+                <div class="passage-text" id="passage-content">
+                    <p>In the digital age, <span class="highlight-target" id="target-1">information overload</span> has become a significant challenge for cognitive processing.</p>
+                    <p>Many individuals find <span class="highlight-target" id="target-2">it</span> increasingly difficult to focus on a single task without being distracted by constant notifications.</p>
+                    <p>Therefore, developing a strategy for <span class="highlight-target" id="target-3">selective attention</span> is not just a luxury, but a necessity for mental well-being.</p>
+                </div>
+            </section>
+
+            <!-- Interactive Task Area -->
+            <aside class="task-sidebar">
+                <div class="task-panel" id="current-task">
+                    <div class="task-header">
+                        <span class="task-level level-1">Level 1</span>
+                        <h3>Micro-Task</h3>
+                    </div>
+                    <div class="task-body" id="task-body">
+                        <!-- Task content injected here -->
+                        <p class="instruction">Read the passage and wait for the first task...</p>
+                    </div>
+                </div>
+
+                <!-- Knowledge Map Minimap -->
+                <div class="knowledge-map">
+                    <h3>Knowledge Map</h3>
+                    <div class="map-visual">
+                        <div class="node active">D4 Passage</div>
+                        <div class="edge"></div>
+                        <div class="node locked" id="reroute-node">D2 Focus Training</div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <!-- Rerouting Modal -->
+        <div class="modal-overlay" id="reroute-modal">
+            <div class="modal-content glass">
+                <div class="modal-icon">⚠️</div>
+                <h2>경로 재탐색 중... (Rerouting)</h2>
+                <p>대명사 지칭 파악에서 어려움을 겪고 계시네요! 이 부분에 특화된 <strong>D2 난이도의 짧은 지문 훈련</strong>을 먼저 진행할까요?</p>
+                <div class="modal-actions">
+                    <button class="btn primary" onclick="acceptReroute()">네, 기초 훈련 먼저 할게요</button>
+                    <button class="btn secondary" onclick="closeModal()">계속 읽어볼게요</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
